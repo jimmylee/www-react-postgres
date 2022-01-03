@@ -1,0 +1,13 @@
+.layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 24px 0 24px;
+  margin: 0 auto 0 auto;
+
+  @media (max-width: 728px) {
+    display: block;
+  }
+}

@@ -7,7 +7,7 @@ import * as Data from "@data/node-data";
 import JWT from "jsonwebtoken";
 import BCrypt from "bcrypt";
 
-export default async (req, res) => {
+export default async function signIn(req, res) {
   await Server.cors(req, res);
 
   if (Strings.isEmpty(req.body.email)) {
@@ -68,4 +68,4 @@ export default async (req, res) => {
   const token = JWT.sign({ user: user.id, email: user.email }, Env.JWT_SECRET);
 
   return res.status(200).send({ token, success: true });
-};
+}

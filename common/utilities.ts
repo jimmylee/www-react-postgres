@@ -1,4 +1,24 @@
+declare const window: any;
+
 const hasOwn = {}.hasOwnProperty;
+
+export async function getWalletStatus() {
+  const isMetamaskEnabled =
+    typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
+  const isPhantomEnabled =
+    typeof window.solana !== "undefined" && window.solana.isPhantom;
+
+  // NOTE(jim): This allows you to get the public key.
+  if (isPhantomEnabled && !window.solana.publicKey) {
+    try {
+      await window.solana.connect({ onlyIfTrusted: true });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  return { isMetamaskEnabled, isPhantomEnabled };
+}
 
 export function classNames(...args: any[]): string {
   var classes = [];

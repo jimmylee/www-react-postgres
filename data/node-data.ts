@@ -177,7 +177,7 @@ export const createOrganization = async ({ domain, data = {} }) => {
   return await runQuery({
     label: "CREATE_ORGANIZATION",
     queryFn: async () => {
-      const query = await DB.insert({
+      const query: any = await DB.insert({
         domain,
         data,
       })
@@ -200,7 +200,7 @@ export const createUser = async ({ email, password, salt, data = {} }) => {
   return await runQuery({
     label: "CREATE_USER",
     queryFn: async () => {
-      const query = await DB.insert({
+      const query: any = await DB.insert({
         email,
         password,
         salt,
@@ -226,7 +226,7 @@ export const updateUserDataByEmail = async ({ email, data = {} }) => {
   return await runQuery({
     label: "UPDATE_USER_DATA_BY_EMAIL",
     queryFn: async () => {
-      const query = await DB.from("users")
+      const query: any = await DB.from("users")
         .where("email", email)
         .update({
           data,

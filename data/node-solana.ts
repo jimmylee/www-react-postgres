@@ -14,13 +14,13 @@ const runQuery = async ({ queryFn, errorFn, label }) => {
 
 export const createAddress = async ({ address, data = {} }) => {
   return await runQuery({
-    label: "CREATE_ETHEREUM_ADDRESS",
+    label: "CREATE_SOLANA_ADDRESS",
     queryFn: async () => {
       const query: any = await DB.insert({
         address,
         data,
       })
-        .into("ethereum")
+        .into("solana")
         .returning("*");
 
       const index = query ? query.pop() : null;
@@ -28,7 +28,7 @@ export const createAddress = async ({ address, data = {} }) => {
     },
     errorFn: async (e) => {
       return {
-        error: "CREATE_ETHEREUM_ADDRESS",
+        error: "CREATE_SOLANA_ADDRESS",
         source: e,
       };
     },
@@ -37,10 +37,10 @@ export const createAddress = async ({ address, data = {} }) => {
 
 export const getAddress = async ({ address }) => {
   return await runQuery({
-    label: "GET_ETHEREUM_ADDRESS",
+    label: "GET_SOLANA_ADDRESS",
     queryFn: async () => {
       const query: any = await DB.select("*")
-        .from("ethereum")
+        .from("solana")
         .where({ address })
         .first();
 
@@ -56,7 +56,7 @@ export const getAddress = async ({ address }) => {
     },
     errorFn: async (e) => {
       return {
-        error: "GET_ETHEREUM_ADDRESS",
+        error: "GET_SOLANA_ADDRESS",
         source: e,
       };
     },
@@ -67,9 +67,9 @@ export const getAddress = async ({ address }) => {
 // Warning this function has the power to wipe all data
 export const updateAddress = async ({ address, data = {} }) => {
   return await runQuery({
-    label: "UPDATE_ETHEREUM_ADDRESS",
+    label: "UPDATE_SOLANA_ADDRESS",
     queryFn: async () => {
-      const query: any = await DB.from("ethereum")
+      const query: any = await DB.from("solana")
         .where("adddress", address)
         .update({
           data,
@@ -80,7 +80,7 @@ export const updateAddress = async ({ address, data = {} }) => {
     },
     errorFn: async (e) => {
       return {
-        error: "UPDATE_ETHEREUM_ADDRESS",
+        error: "UPDATE_SOLANA_ADDRESS",
         source: e,
       };
     },

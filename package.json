@@ -1,12 +1,13 @@
 {
   "name": "www-react-postgres",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "next -p 3005",
     "build": "next build",
     "start": "NODE_ENV=production next start",
-    "script": "ts-node -O '{\"module\":\"commonjs\"}' scripts/index.js"
+    "script": "ts-node -O '{\"module\":\"commonjs\"}' scripts/index.js",
+    "production-script": "NODE_ENV=production ts-node -O '{\"module\":\"commonjs\"}' scripts/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

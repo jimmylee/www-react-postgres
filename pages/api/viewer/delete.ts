@@ -5,7 +5,7 @@ import * as AuthUtilities from "@common/utilities-authentication";
 
 import JWT from "jsonwebtoken";
 
-export default async (req, res) => {
+export default async function deleteViewer(req, res) {
   const authorization = AuthUtilities.parseAuthHeader(
     req.headers.authorization
   );
@@ -50,4 +50,4 @@ export default async (req, res) => {
   }
 
   return res.status(200).send({ success: true });
-};
+}

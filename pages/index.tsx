@@ -3,46 +3,70 @@ import styles from "@components/index.module.scss";
 import * as React from "react";
 import * as Requests from "@common/requests";
 import * as Strings from "@common/strings";
+import * as Utilities from "@common/utilities";
 import * as NodeAuth from "@data/node-authentication";
 import * as NodeGoogle from "@data/node-google";
 
 import SceneHome from "@scenes/SceneHome";
 import App from "@components/App";
 
+declare const window: any;
+
 function IndexPage(props) {
   const [state, setState] = React.useState({
-    isMetamaskEnabled: false,
     ethereum: null,
+    solana: null,
+    isMetamaskEnabled: false,
+    isPhantomEnabled: false,
   });
 
   React.useEffect(() => {
-    const isMetamaskEnabled =
-      typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
+    const loadWatchers = async () => {
+      const { isMetamaskEnabled } = await Utilities.getWalletStatus();
 
-    if (!isMetamaskEnabled) {
-      return;
-    }
+      if (!isMetamaskEnabled) {
+        return;
+      }
 
-    // NOTE(jim): Lazy way to perform updates.
-    ethereum.on("accountsChanged", function(accounts) {
-      window.location.reload();
-    });
-  });
+      // TODO(jim): This is lazy. you can find another way.
+      window.ethereum.on("accountsChanged", function(accounts) {
+        window.location.reload();
+      });
+    };
+
+    loadWatchers();
+  }, []);
 
   React.useEffect(() => {
     const load = async () => {
-      const isMetamaskEnabled =
-        typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
+      const {
+        isMetamaskEnabled,
+        isPhantomEnabled,
+      } = await Utilities.getWalletStatus();
 
-      let addressResponse = null;
+      // NOTE(jim): The associated Ethereum address
+      let ethereumResponse = null;
       if (isMetamaskEnabled) {
         if (!Strings.isEmpty(window.ethereum.selectedAddress)) {
-          const response = await Requests.get(
+          const eResponse = await Requests.get(
             `/api/ethereum/${window.ethereum.selectedAddress}`
           );
 
-          if (response && response.address) {
-            addressResponse = response;
+          if (eResponse && eResponse.address) {
+            ethereumResponse = eResponse;
+          }
+        }
+      }
+
+      // NOTE(jim): The associated Solana address
+      let solanaResponse = null;
+      if (isPhantomEnabled && window.solana.publicKey) {
+        const solanaAddress = window.solana.publicKey.toString();
+        if (!Strings.isEmpty(solanaAddress)) {
+          const sResponse = await Requests.get(`/api/solana/${solanaAddress}`);
+
+          if (sResponse && sResponse.address) {
+            solanaResponse = sResponse;
           }
         }
       }
@@ -50,7 +74,9 @@ function IndexPage(props) {
       setState({
         ...state,
         isMetamaskEnabled,
-        ethereum: addressResponse,
+        isPhantomEnabled,
+        ethereum: ethereumResponse,
+        solana: solanaResponse,
       });
     };
 
@@ -67,6 +93,7 @@ function IndexPage(props) {
         viewer={props.viewer}
         googleURL={props.googleURL}
         state={state}
+        host={props.host}
       />
     </App>
   );
@@ -77,7 +104,11 @@ export async function getServerSideProps(context) {
   const { googleURL } = await NodeGoogle.generateURL();
 
   return {
-    props: { viewer: viewer && viewer.id ? viewer : null, googleURL },
+    props: {
+      viewer: viewer && viewer.id ? viewer : null,
+      host: context.req.headers.host,
+      googleURL,
+    },
   };
 }
 

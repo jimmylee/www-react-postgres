@@ -1,30 +1,33 @@
 # WWW-REACT-POSTGRES
 
-<img width="1299" alt="Screen Shot 2022-01-03 at 4 52 38 PM" src="https://user-images.githubusercontent.com/310223/147995694-f4fb36e4-772a-4429-b822-82121421cbe2.png">
+<img width="1239" alt="www-react-postgres" src="https://user-images.githubusercontent.com/310223/148035171-79958937-3aee-47b6-b182-0bbf9e246995.png">
 
 #### What is this for?
 
-This template is for making a good website or application with a starting template. I made it to kick off 2022 since I work with both Web2 and Web3 technologies and networks.
+This template is for making a good website or web application. I made it to kick off 2022!
 
-If you are a beginner and need something that is simpler to understand to start, try [next-sass](https://github.com/application-research/next-sass).
+If you are a beginner and just want to make a simple React website with no database, try [next-sass](https://github.com/application-research/next-sass).
 
 #### Why would I use this?
 
-- You want to use [React](https://reactjs.org/).
-- You want to write [SASS](https://sass-lang.com/), like the good old days.
-- You want to manage your own secrets and not expose them to the client, which you can do with server side code execution thanks to [https://nextjs.org/](NextJS).
-- You want to use Postgres 11 to manage data.
-- You want the minimum SEO guidance to get started on the web.
-- **[OPTIONAL]** You want to start with a [Google Authentication](https://github.com/googleapis/google-api-nodejs-client) example.
-- **[OPTIONAL]** This example automatically creates shared Google organizations too based on the provided domain name.
-- **[OPTIONAL]** You can also authenticate your Ethereum addresses from [Metamask](https://metamask.io/) to build a decentralized application (dapp) such as an NFT minting website. This example keeps a table of ethereum addresses where you can store local information in the `jsonb` column.
-- You want minimal code to get the job done for a production ready website.
+You want...
 
-If this is not valuable to you, please let me know in the GitHub issues!
+- To use [React](https://reactjs.org/).
+- To write [SASS](https://sass-lang.com/), like the good old days.
+- To manage your own service secrets and not expose them to the client by using SSR from [https://nextjs.org/](NextJS) and `dotenv`.
+- To use Postgres 11 to manage local data or local authentication.
+- The minimum SEO optimal SEO metatags.
+- **[OPTIONAL]** To start with a [Google Authentication](https://github.com/googleapis/google-api-nodejs-client) example.
+- **[OPTIONAL]** To start with an example of "organizations", each organization is created with an e-mail's domain name.
+- **[OPTIONAL]** To authenticate your Ethereum addresses from [Metamask](https://metamask.io/) to build a DAPP or DAO. This example keeps a table of Ethereum addresses where you can store local information in the `jsonb` column.
+- **[OPTIONAL]** To authenticate your Solana address (public key) from [Phantom](https://phantom.app) to build a DAPP or DAO. This example also keeps a table of Solana addreses in the same way above.
+- Minimal code to get the job done for a production ready website.
+
+Will add support for [Filecoin](https://docs.filecoin.io), [NEAR](https://docs.near.org/docs/api/naj-quick-reference) and other networks as I develop the template.
 
 ## Setup (MacOS)
 
-All steps assume you have [Homebrew](https://brew.sh/) installed on your machine. You might want to install [iTerm](https://iterm2.com/) since you will need multiple terminal windows open.
+All steps assume you have [Homebrew](https://brew.sh/) installed on your machine. You might want to install [iTerm](https://iterm2.com/) since you will need multiple terminal windows open. One will be for your web server, the other will be for your Postgres database.
 
 #### Step 1
 
@@ -169,6 +172,13 @@ PRODUCTION_DATABASE_HOST=oregon-postgres.render.com
 PRODUCTION_DATABASE_NAME=yourdatabasename
 PRODUCTION_DATABASE_USERNAME=yourdatabasename_user
 PRODUCTION_DATABASE_PASSWORD=XXXXXXXXXXXXXXXXXXXXX
+```
+
+Then you will need to run production scripts
+
+```sh
+npm run production-script database-setup
+npm run production-script database-seed
 ```
 
 For deploying your new website, I recommend any of the following choices:

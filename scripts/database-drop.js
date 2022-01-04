@@ -3,7 +3,7 @@ import knex from "knex";
 
 const name = `database-drop.js`;
 const environment =
-  process.env.NODE_ENV !== "local-production" ? "development" : "production";
+  process.env.NODE_ENV !== "production" ? "development" : "production";
 const envConfig = configs[environment];
 const db = knex(envConfig);
 

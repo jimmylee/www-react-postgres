@@ -127,7 +127,11 @@ function SceneHome(props) {
           {maybeRenderGoogleAuth && (
             <LineItem>
               <Content>
-                <H2>Sign in with Google</H2>
+                {props.viewer ? (
+                  <H2>Continue with Google</H2>
+                ) : (
+                  <H2>Sign in with Google</H2>
+                )}
 
                 <P>
                   This is a traditional Google sign in flow. The necessary
@@ -135,6 +139,14 @@ function SceneHome(props) {
                   local authentication strategy with a username and password, a
                   user using this method will have a verified e-mail.
                 </P>
+
+                {props.viewer && (
+                  <P>
+                    If a user continues with a Google account that does not
+                    match the local authentication e-mail, it will sign that
+                    user into that account instead.
+                  </P>
+                )}
 
                 <Button href={props.googleURL}>Continue to Google</Button>
               </Content>

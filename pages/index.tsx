@@ -105,7 +105,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      viewer: viewer && viewer.id ? viewer : null,
+      viewer: viewer,
       host: context.req.headers.host,
       googleURL,
     },

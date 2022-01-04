@@ -21,6 +21,7 @@ export default async function signIn(req, res) {
   }
 
   let user = await Data.getUserByEmail({ email: req.body.email });
+
   if (!user) {
     const salt = BCrypt.genSaltSync(Env.PASSWORD_ROUNDS);
     const hash = BCrypt.hashSync(req.body.password, salt);

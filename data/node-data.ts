@@ -14,7 +14,7 @@ const runQuery = async ({ queryFn, errorFn, label }) => {
   try {
     response = await queryFn();
   } catch (e) {
-    response = errorFn(e);
+    response = await errorFn(e);
   }
 
   console.log("[ database-query ]", { query: label });

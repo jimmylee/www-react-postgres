@@ -220,3 +220,26 @@ export const createUser = async ({ email, password, salt, data = {} }) => {
     },
   });
 };
+
+// NOTE(jim): Careful, you could wipe out all of the user custom fields here.
+export const updateUserDataByEmail = async ({ email, data = {} }) => {
+  return await runQuery({
+    label: "UPDATE_USER_DATA_BY_EMAIL",
+    queryFn: async () => {
+      const query = await DB.from("users")
+        .where("email", email)
+        .update({
+          data,
+        });
+
+      const index = query ? query.pop() : null;
+      return index;
+    },
+    errorFn: async (e) => {
+      return {
+        error: "UPDATE_USER_DATA_BY_EMAIL",
+        source: e,
+      };
+    },
+  });
+};

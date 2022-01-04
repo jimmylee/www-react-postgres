@@ -1,5 +1,7 @@
 # WWW-REACT-POSTGRES
 
+<img width="1299" alt="Screen Shot 2022-01-03 at 4 52 38 PM" src="https://user-images.githubusercontent.com/310223/147995694-f4fb36e4-772a-4429-b822-82121421cbe2.png">
+
 #### What is this for?
 
 This template is for making a good website or application with a starting template. I made it to kick off 2022 since I work with both Web2 and Web3 technologies and networks.
@@ -15,9 +17,10 @@ If you are a beginner and need something that is simpler to understand to start,
 - You want the minimum SEO guidance to get started on the web.
 - **[OPTIONAL]** You want to start with a [Google Authentication](https://github.com/googleapis/google-api-nodejs-client) example.
 - **[OPTIONAL]** This example automatically creates shared Google organizations too based on the provided domain name.
+- **[OPTIONAL]** You can also authenticate your Ethereum addresses from [Metamask](https://metamask.io/) to build a decentralized application (dapp) such as an NFT minting website. This example keeps a table of ethereum addresses where you can store local information in the `jsonb` column.
 - You want minimal code to get the job done for a production ready website.
 
-If this is not valuable to you, there are probably other templates.
+If this is not valuable to you, please let me know in the GitHub issues!
 
 ## Setup (MacOS)
 

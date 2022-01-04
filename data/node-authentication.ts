@@ -17,7 +17,9 @@ export const getViewer = async (req, existingToken = undefined) => {
 
     let decode = JWT.verify(token, Env.JWT_SECRET);
     viewer = await NodeData.getUserByEmail({ email: decode.email });
-  } catch (e) {}
+  } catch (e) {
+    viewer = null;
+  }
 
   if (!viewer || viewer.error) {
     viewer = null;

@@ -17,6 +17,7 @@ const OAuth2 = google.auth.OAuth2;
 function GoogleAuthenticationPage(props) {
   React.useEffect(() => {
     if (!Strings.isEmpty(props.token)) {
+      cookies.remove(Constants.SESSION_KEY);
       cookies.set(Constants.SESSION_KEY, props.token);
       return window.location.replace("/");
     }
@@ -145,6 +146,15 @@ export async function getServerSideProps(context) {
         destination: "/?error=google",
       },
     };
+  }
+
+  // NOTE(jim): If you are able to authenticate with google...
+  // the user is now verified and updated.
+  if (!user.data.google) {
+    await Data.updateUserDataByEmail({
+      email: user.email,
+      data: { ...user.data, verified: true, google: true },
+    });
   }
 
   const authToken = JWT.sign(

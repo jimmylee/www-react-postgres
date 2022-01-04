@@ -1,7 +1,7 @@
 {
   "name": "www-react-postgres",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "next -p 3005",
     "build": "next build",

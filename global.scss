@@ -102,13 +102,17 @@ section {
 
 html,
 body {
-  --dark-background: #111;
-  --dark-text: #ffffff;
-  --dark-primary: #474f7c;
+  --light-background: #fff;
+  --light-text: #1c1c1c;
+  --color-primary: #0047ff;
+  --color-success: #28a745;
+  --color-warning: #ffbd00;
+  --color-failure: #ff0000;
 
-  --theme-background: var(--dark-background);
-  --theme-text: var(--dark-text);
-  --theme-button: var(--dark-primary);
+  --theme-background: var(--light-background);
+  --theme-text: var(--light-text);
+  --theme-button: var(--color-primary);
+  --theme-tip-default: var(--color-success);
 
   font-size: 14px;
   background: var(--theme-background);

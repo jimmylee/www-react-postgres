@@ -19,7 +19,7 @@ const signIn = async (key: string, body: any) => {
   return alert(response.error);
 };
 
-const signOut = async (key: string, body: any) => {
+const signOut = async (key: string) => {
   const jwt = cookies.get(Constants.SESSION_KEY);
   if (jwt) {
     cookies.remove(Constants.SESSION_KEY);
@@ -29,7 +29,7 @@ const signOut = async (key: string, body: any) => {
   return alert("There was no session to sign out of.");
 };
 
-const deleteViewer = async (key: string, body: any) => {
+const deleteViewer = async (key: string) => {
   let response = await Requests.del("/api/viewer/delete");
   if (response.success) {
     cookies.remove(Constants.SESSION_KEY);
@@ -39,10 +39,29 @@ const deleteViewer = async (key: string, body: any) => {
   return alert(response.error);
 };
 
+const connectMetamask = async (key: string) => {
+  if (!window.ethereum) {
+    alert("Metamask is not installed");
+  }
+
+  // NOTE(jim): Returns an array of ethereum addresses.
+  const response = await ethereum.request({ method: "eth_requestAccounts" });
+  console.log(response);
+
+  if (response && response.length) {
+    for await (const address of response) {
+      await Requests.post("/api/ethereum/create", { address });
+    }
+  }
+
+  return window.location.reload();
+};
+
 export const execute = async (key: string, body?: any) => {
   if (key === "SIGN_IN") return await signIn(key, body);
-  if (key === "SIGN_OUT") return await signOut(key, body);
-  if (key === "VIEWER_DELETE_USER") return await deleteViewer(key, body);
+  if (key === "SIGN_OUT") return await signOut(key);
+  if (key === "VIEWER_DELETE_USER") return await deleteViewer(key);
+  if (key === "VIEWER_CONNECT_METAMASK") return await connectMetamask(key);
 
   return alert(`There is no action: ${key}`);
 };

@@ -13,6 +13,28 @@ console.log(`RUNNING: ${name} NODE_ENV=${environment}`);
 // SCRIPTS
 // --------------------------
 
+const createEthereumAddressTable = db.schema.createTable("ethereum", function(
+  table
+) {
+  table
+    .string("address")
+    .primary()
+    .unique()
+    .notNullable();
+
+  table
+    .timestamp("created_at")
+    .notNullable()
+    .defaultTo(db.raw("now()"));
+
+  table
+    .timestamp("updated_at")
+    .notNullable()
+    .defaultTo(db.raw("now()"));
+
+  table.jsonb("data").nullable();
+});
+
 const createUserTable = db.schema.createTable("users", function(table) {
   table
     .uuid("id")
@@ -74,6 +96,10 @@ const createOrganizationsTable = db.schema.createTable(
 // RUN
 // --------------------------
 
-Promise.all([createUserTable, createOrganizationsTable]);
+Promise.all([
+  createEthereumAddressTable,
+  createUserTable,
+  createOrganizationsTable,
+]);
 
-console.log(`FINISHED: ${name} NODE_ENV=${environment}`);
+console.log(`FINISHED: ${name} NODE_ENV=${environment} (⌘ + C to quit)`);

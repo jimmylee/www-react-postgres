@@ -22,4 +22,4 @@ const dropOrganizationsTable = db.schema.dropTable("organizations");
 
 Promise.all([dropUserTable, dropOrganizationsTable]);
 
-console.log(`FINISHED: ${name} NODE_ENV=${environment}`);
+console.log(`FINISHED: ${name} NODE_ENV=${environment} (⌘ + C to quit)`);

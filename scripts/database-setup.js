@@ -11,4 +11,4 @@ console.log(`RUNNING: ${name} NODE_ENV=${environment}`);
 
 Promise.all([db.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')]);
 
-console.log(`FINISHED: ${name} NODE_ENV=${environment}`);
+console.log(`FINISHED: ${name} NODE_ENV=${environment} (⌘ + C to quit)`);

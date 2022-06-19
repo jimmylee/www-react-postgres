@@ -7,6 +7,7 @@
       "@common/*": ["./common/*"],
       "@scenes/*": ["./scenes/*"],
       "@components/*": ["./components/*"],
+      "@modules/*": ["./modules/*"],
       "@pages/*": ["./pages/*"]
     },
     "target": "es5",

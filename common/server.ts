@@ -1,4 +1,4 @@
-import Cors from "cors";
+import Cors from "@modules/cors";
 
 export function initMiddleware(middleware) {
   return (req, res) =>

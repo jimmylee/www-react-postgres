@@ -2,6 +2,7 @@ import * as Requests from "@common/requests";
 import * as Constants from "@common/constants";
 import * as Strings from "@common/strings";
 
+// TODO(jim): Remove this dependency at some point.
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();

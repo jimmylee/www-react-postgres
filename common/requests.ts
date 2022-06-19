@@ -1,5 +1,6 @@
 import * as Constants from "@common/constants";
 
+// TODO(jim): Remove this dependency at some point.
 import Cookies from "universal-cookie";
 
 const REQUEST_HEADERS = {

@@ -1,7 +1,7 @@
 {
   "name": "www-react-postgres",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "dev": "next -p 3005",
     "build": "next build",
@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "googleapis": "^92.0.0",
+    "dotenv": "^16.0.1",
+    "googleapis": "^103.0.0",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.95.15",
-    "next": "12.0.7",
-    "pg": "^8.7.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "sass": "1.45.1",
+    "knex": "^2.1.0",
+    "next": "12.1.6",
+    "pg": "^8.7.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "1.52.3",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "@types/react": "^17.0.38",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
   }
 }

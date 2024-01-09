@@ -1,3 +1,7 @@
+## DEPRECATION NOTICE
+
+This template is no longer up to date. For an updated template, either as a team or individually, we encourage you to explore our [latest template](https://github.com/internet-development/nextjs-sass-starter) produced by [INTDEV](https://internet.dev). Thank you for your interest in our work! 
+
 # WWW-REACT-POSTGRES
 
 <img width="1239" alt="www-react-postgres" src="https://user-images.githubusercontent.com/310223/148035171-79958937-3aee-47b6-b182-0bbf9e246995.png">
